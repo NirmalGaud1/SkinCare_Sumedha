@@ -76,7 +76,7 @@ def main():
     st.markdown("This application uses **TinyBERT** feature extraction + **Logistic Regression** to categorize emerging skincare trends from your `dataset.csv` file.")
 
     try:
-        data_df = pd.read_csv(DATASET_PATH)
+        data_df = pd.read_csv(DATASET_PATH, on_bad_lines='skip',  # Skip lines that have the wrong number of columns engine='python'       # Use the Python engine, which is more robust than the default C engine)
         st.sidebar.success(f"Successfully loaded {len(data_df)} rows from {DATASET_PATH}.")
         
     except FileNotFoundError:
